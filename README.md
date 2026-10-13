@@ -1,11 +1,17 @@
-# <h1 align="center">Hi there, I'm John Lloyd Villar 👋</h1>
+<div align="center">
+  <img src="./header.gif" alt="Toyota Chaser Drift Tunnel" width="100%" />
+</div>
+
+<br/>
+
+<h1 align="center">Hi there, I'm John Lloyd Villar 👋</h1>
 
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=600&lines=Computer+Engineering+Undergraduate;Backend+Developer+in+Progress;Frontend+Experience;C%2B%2B+%26+Software+Explorer;Gym+%26+Fitness+Enthusiast;Bookworm+%26+Outdoor+Adventurer)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=38BDF8&center=true&vCenter=true&width=600&lines=Currently+4th+Year+Computer+Engineering;Backend+Developer+in+Progress;Frontend+Experience;C%2B%2B+%26+Software+Explorer;Gym+%26+Fitness+Enthusiast;Bookworm+%26+Outdoor+Adventurer)](https://git.io/typing-svg)
 
 <p align="center">
-  <b>3rd-Year Computer Engineering Student at ICCT Colleges</b> • <b>Aspiring Full-Stack Software Engineer</b>
+  <b>Currently 4th-Year Computer Engineering Student at ICCT Colleges</b> • <b>Aspiring Full-Stack Software Engineer</b>
 </p>
 
 [![Email](https://img.shields.io/badge/Email-Johnnlloyd.villar%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Johnnlloyd.villar@gmail.com)
@@ -18,7 +24,7 @@
 
 ### 🚀 About Me
 
-I am a passionate **3rd-year Computer Engineering undergraduate** at **ICCT Colleges** based in **Rodriguez, Rizal, Philippines**. 
+I am a passionate **currently 4th-year Computer Engineering student** at **ICCT Colleges** based in **Rodriguez, Rizal, Philippines**. 
 
 I enjoy bridging the gap between intuitive user interfaces and solid backend logic. Having built frontend experiences, I am currently focusing heavily on **backend development** in my ongoing project—learning how data flows, how APIs communicate, and how systems stay secure and performant.
 
@@ -96,8 +102,8 @@ When I step away from the keyboard and development environments:
 
 ### 🎓 Education & Background
 
-- **ICCT Colleges** (Undergraduate)
-  - 🎓 *Bachelor of Science in Computer Engineering (3rd Year)*
+- **ICCT Colleges**
+  - 🎓 *Bachelor of Science in Computer Engineering (Currently 4th Year)*
   - Core areas: Computer Hardware/Software systems, logic, programming, circuits.
 - **Pamantasan ng Lungsod ng Marikina**
   - 🎓 *Senior High School Graduate*
