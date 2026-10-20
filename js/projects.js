@@ -1,58 +1,54 @@
 /*
- * Portfolio projects for John Lloyd F. Villar
- * Computer Engineering Student & Aspiring Software Engineer
+ * Portfolio Projects Data - John Lloyd F. Villar
+ * Computer Engineering Undergraduate, ICCT Colleges
  */
 window.PORTFOLIO_PROJECTS = [
   {
+    id: "syncedn",
     title: "Project SyncedN",
-    subtitle: "Mobile & Cloud Management System",
-    description: "A multi-role Android application designed with separate administrator and member workflows. Features real-time credential verification, state management, role-based access control, and live database synchronization.",
-    technologies: ["Kotlin", "Android SDK", "Cloud Database", "Role Access Control", "Material Design"],
-    category: "Mobile & Cloud",
-    role: "Android & Systems Developer",
-    status: "Active Project",
-    monogram: "SN",
+    subtitle: "Role-Based Android Operations Application",
+    tag: "Mobile & Systems Development",
+    description: "An Android application designed to handle operational workflows across administrative and member tiers. Includes local session persistence, identity checks, structured data collections, and synchronized operational state.",
+    technologies: ["Kotlin", "Android SDK", "Local Database", "Role Management", "Material Design"],
+    role: "Lead Developer (Mobile & Data Architecture)",
+    status: "Active Development",
     repositoryUrl: "https://github.com/johnllydvllr12-create",
-    demoUrl: "",
-    detailsUrl: ""
+    demoUrl: ""
   },
   {
-    title: "Three-Story Building Network Infrastructure",
-    subtitle: "Data Communications & Structured Cabling",
-    description: "Engineered a complete network infrastructure design for a three-story commercial facility accommodating 20+ distributed user units (COEPRO14 Group 9N). Included backbone routing, patch panel distribution, VLAN segmentation, and redundant failover paths.",
-    technologies: ["Network Topology", "Structured Cabling", "Packet Routing", "VLANs", "Technical Documentation"],
-    category: "Engineering & Networking",
-    role: "Network Architecture & Contributor",
+    id: "building-network",
+    title: "Three-Tier Facility Data Communications Design",
+    subtitle: "Commercial Network & Structured Cabling Blueprint",
+    tag: "Telecommunications & Networking",
+    description: "Designed a comprehensive building network infrastructure plan for a three-story commercial facility housing 20+ distributed workstation units (COEPRO14 Group 9N). Defined main distribution frames (MDF), intermediate distribution frames (IDF), Cat6 cabling channels, VLAN segmentation, and redundant default gateways.",
+    technologies: ["Network Architecture", "Structured Cabling", "Cisco Packet Tracer", "AutoCAD", "Subnetting"],
+    role: "Network Architect & Team Contributor",
     status: "Completed (May 2026)",
-    monogram: "NET",
     repositoryUrl: "",
-    demoUrl: "",
-    detailsUrl: ""
+    demoUrl: ""
   },
   {
-    title: "SyncShot: ESP32 Camera Trigger System",
-    subtitle: "Embedded Hardware & Telemetry",
-    description: "A hardware-software prototype utilizing ESP32 microcontrollers for synchronized, low-latency wireless camera shutter actuation. Coordinates multiple camera viewpoints simultaneously via Wi-Fi telemetry and GPIO switching.",
-    technologies: ["ESP32", "Embedded C++", "Wi-Fi Telemetry", "Hardware Prototyping", "GPIO"],
-    category: "Embedded Systems",
-    role: "Hardware-Software Integration",
-    status: "Prototype",
-    monogram: "SS",
+    id: "syncshot",
+    title: "SyncShot: Wireless Camera Actuation System",
+    subtitle: "ESP32 Embedded Shutter Controller",
+    tag: "Hardware & Embedded Systems",
+    description: "A hardware-software prototype built with ESP32 microcontrollers to coordinate synchronized, low-latency shutter triggering across multiple camera perspectives. Utilizes custom Wi-Fi telemetry and hardware GPIO switching for simultaneous multi-angle captures.",
+    technologies: ["ESP32", "Embedded C++", "Wi-Fi Telemetry", "Hardware Prototyping", "GPIO Circuitry"],
+    role: "Hardware & Firmware Integration",
+    status: "Functional Prototype",
     repositoryUrl: "",
-    demoUrl: "",
-    detailsUrl: ""
+    demoUrl: ""
   },
   {
-    title: "Lloydcodex Web Interface",
-    subtitle: "Frontend Architecture & Design",
-    description: "A responsive, accessible frontend interface created to explore modern CSS techniques, responsive flex/grid layouts, clean typographic hierarchy, and interactive styling without heavy framework overhead.",
-    technologies: ["HTML5", "CSS3", "Responsive Design", "GitHub Pages"],
-    category: "Web Development",
-    role: "Frontend Developer",
-    status: "Completed",
-    monogram: "LC",
+    id: "lloydcodex",
+    title: "Lloydcodex Responsive Web System",
+    subtitle: "Custom Lightweight Web Interface",
+    tag: "Web Interface & Layout",
+    description: "A clean, responsive web layout constructed from scratch to explore modern CSS techniques, flexible grid systems, accessible typography, and cross-device responsiveness without relying on heavy frontend libraries.",
+    technologies: ["HTML5", "CSS3", "Responsive Grid", "CSS Custom Properties", "GitHub Pages"],
+    role: "Frontend Designer & Developer",
+    status: "Published",
     repositoryUrl: "https://github.com/johnllydvllr12-create/Lloydcodex",
-    demoUrl: "https://johnllydvllr12-create.github.io/Lloydcodex/",
-    detailsUrl: ""
+    demoUrl: "https://johnllydvllr12-create.github.io/Lloydcodex/"
   }
 ];

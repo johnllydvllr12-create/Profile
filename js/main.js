@@ -1,240 +1,130 @@
 /*
- * Personal Portfolio Scripts - John Lloyd F. Villar
- * Clean, lightweight, framework-free implementation.
+ * John Lloyd F. Villar - Portfolio Client Scripts
+ * Clean, lightweight, dependency-free functionality
  */
-
-const SITE_CONFIG = {
-  name: "John Lloyd F. Villar",
-  githubUsername: "johnllydvllr12-create",
-  email: "Johnnlloyd.villar@gmail.com",
-  phone: "+63 921 869 3495",
-  location: "Rodriguez, Rizal, Philippines",
-  profileImage: "assets/profile.png",
-  resumePath: "assets/resume.pdf"
-};
 
 (() => {
   "use strict";
 
   const root = document.documentElement;
-  const themeButton = document.querySelector(".theme-toggle");
+  const themeToggle = document.querySelector("#theme-toggle");
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const menuButton = document.querySelector(".menu-toggle");
-  const navigation = document.querySelector("#primary-navigation");
-  const navLinks = [...document.querySelectorAll(".nav-link")];
-  const currentYear = document.querySelector("#footer-year");
+  const menuToggle = document.querySelector("#menu-toggle");
+  const navMenu = document.querySelector("#nav-menu");
+  const navLinks = [...document.querySelectorAll(".nav-item")];
+  const yearElement = document.querySelector("#copyright-year");
 
-  // Update dynamic year
-  if (currentYear) {
-    currentYear.textContent = new Date().getFullYear();
+  // Dynamic Year
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
   }
 
-  /* -----------------------------------------------------------
-     Theme Management (Dark / Light)
-  ----------------------------------------------------------- */
-  function applyTheme(theme, save = true) {
-    const normalized = theme === "light" ? "light" : "dark";
-    root.dataset.theme = normalized;
+  /* Theme Switching */
+  function updateTheme(theme, save = true) {
+    const isLight = theme === "light";
+    root.dataset.theme = isLight ? "light" : "dark";
     if (themeMeta) {
-      themeMeta.setAttribute("content", normalized === "light" ? "#f7faf8" : "#090e0c");
+      themeMeta.setAttribute("content", isLight ? "#f6faf7" : "#0a0f0d");
     }
-    if (themeButton) {
-      const nextTheme = normalized === "dark" ? "light" : "dark";
-      themeButton.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
-      themeButton.setAttribute("title", `Switch to ${nextTheme} theme`);
+    if (themeToggle) {
+      const nextTheme = isLight ? "dark" : "light";
+      themeToggle.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+      themeToggle.setAttribute("title", `Switch to ${nextTheme} theme`);
     }
     if (save) {
       try {
-        localStorage.setItem("jlv-portfolio-theme", normalized);
-      } catch (e) {
-        /* storage may be unavailable */
-      }
+        localStorage.setItem("jlv-theme", isLight ? "light" : "dark");
+      } catch (err) {}
     }
   }
 
-  // Load saved theme or system preference
+  // Load saved theme or match system
   try {
-    const savedTheme = localStorage.getItem("jlv-portfolio-theme");
-    if (savedTheme) {
-      applyTheme(savedTheme, false);
+    const stored = localStorage.getItem("jlv-theme");
+    if (stored) {
+      updateTheme(stored, false);
     } else {
-      const systemPrefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-      applyTheme(systemPrefersLight ? "light" : "dark", false);
+      const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      updateTheme(prefersLight ? "light" : "dark", false);
     }
-  } catch (e) {
-    applyTheme("dark", false);
+  } catch (err) {
+    updateTheme("dark", false);
   }
 
-  themeButton?.addEventListener("click", () => {
-    const current = root.dataset.theme === "light" ? "light" : "dark";
-    applyTheme(current === "dark" ? "light" : "dark");
+  themeToggle?.addEventListener("click", () => {
+    const next = root.dataset.theme === "light" ? "dark" : "light";
+    updateTheme(next);
   });
 
-  /* -----------------------------------------------------------
-     Mobile Navigation Toggle
-  ----------------------------------------------------------- */
-  function setMenuOpen(open) {
-    if (!menuButton || !navigation) return;
-    menuButton.setAttribute("aria-expanded", String(open));
-    menuButton.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
-    navigation.classList.toggle("is-open", open);
+  /* Mobile Navigation */
+  function toggleMobileMenu(isOpen) {
+    if (!menuToggle || !navMenu) return;
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    navMenu.classList.toggle("open", isOpen);
   }
 
-  menuButton?.addEventListener("click", () => {
-    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-    setMenuOpen(!isOpen);
+  menuToggle?.addEventListener("click", () => {
+    const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+    toggleMobileMenu(!expanded);
   });
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => setMenuOpen(false));
+    link.addEventListener("click", () => toggleMobileMenu(false));
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") setMenuOpen(false);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") toggleMobileMenu(false);
   });
 
-  document.addEventListener("click", (event) => {
-    if (!navigation || !menuButton || !navigation.classList.contains("is-open")) return;
-    if (!navigation.contains(event.target) && !menuButton.contains(event.target)) {
-      setMenuOpen(false);
+  document.addEventListener("click", (e) => {
+    if (!navMenu || !menuToggle || !navMenu.classList.contains("open")) return;
+    if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      toggleMobileMenu(false);
     }
   });
 
-  /* -----------------------------------------------------------
-     Active Nav Link Highlighter on Scroll
-  ----------------------------------------------------------- */
-  const sections = document.querySelectorAll("section[id]");
-  const observerOptions = {
-    root: null,
-    rootMargin: "-20% 0px -70% 0px",
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver((entries) => {
+  /* Active Navigation Spy */
+  const observedSections = document.querySelectorAll("section[id]");
+  const spy = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute("id");
         navLinks.forEach((link) => {
           if (link.getAttribute("href") === `#${id}`) {
-            link.classList.add("is-active");
+            link.classList.add("active");
           } else {
-            link.classList.remove("is-active");
+            link.classList.remove("active");
           }
         });
       }
     });
-  }, observerOptions);
-
-  sections.forEach((sec) => observer.observe(sec));
-
-  /* -----------------------------------------------------------
-     Skills Filter Interaction
-  ----------------------------------------------------------- */
-  const skillFilters = document.querySelectorAll(".skill-filters .filter-button");
-  const skillCards = document.querySelectorAll(".skills-grid .skill-card");
-  const skillStatus = document.querySelector("#skill-filter-status");
-
-  skillFilters.forEach((button) => {
-    button.addEventListener("click", () => {
-      skillFilters.forEach((b) => {
-        b.classList.remove("is-selected");
-        b.setAttribute("aria-pressed", "false");
-      });
-      button.classList.add("is-selected");
-      button.setAttribute("aria-pressed", "true");
-
-      const filter = button.getAttribute("data-skill-filter");
-      let visibleCount = 0;
-
-      skillCards.forEach((card) => {
-        const category = card.getAttribute("data-skill-category");
-        if (filter === "all" || category === filter) {
-          card.removeAttribute("hidden");
-          visibleCount++;
-        } else {
-          card.setAttribute("hidden", "");
-        }
-      });
-
-      if (skillStatus) {
-        skillStatus.textContent = filter === "all" 
-          ? `Showing all ${visibleCount} tools.`
-          : `Showing ${visibleCount} ${button.textContent.trim()} tools.`;
-      }
-    });
+  }, {
+    rootMargin: "-25% 0px -65% 0px",
+    threshold: 0
   });
 
-  /* -----------------------------------------------------------
-     Projects Rendering
-  ----------------------------------------------------------- */
-  const projectsGrid = document.querySelector("#projects-grid");
-  const projectList = Array.isArray(window.PORTFOLIO_PROJECTS) ? window.PORTFOLIO_PROJECTS : [];
+  observedSections.forEach((sec) => spy.observe(sec));
 
-  if (projectsGrid && projectList.length > 0) {
-    projectsGrid.innerHTML = "";
-    projectList.forEach((project) => {
-      const card = document.createElement("article");
-      card.className = "project-card";
+  /* Clipboard Copy */
+  const copyBtns = document.querySelectorAll(".btn-copy");
+  const copyNotify = document.querySelector("#copy-feedback");
 
-      const techBadges = (project.technologies || [])
-        .map((t) => `<span>${t}</span>`)
-        .join("");
-
-      let actionHtml = "";
-      if (project.repositoryUrl) {
-        actionHtml += `<a class="project-link" href="${project.repositoryUrl}" target="_blank" rel="noopener noreferrer">Source code &rarr;</a>`;
-      }
-      if (project.demoUrl) {
-        actionHtml += `<a class="project-link" href="${project.demoUrl}" target="_blank" rel="noopener noreferrer">Live preview &rarr;</a>`;
-      }
-      if (!actionHtml) {
-        actionHtml = `<span class="project-link-muted">Academic / Hardware prototype</span>`;
-      }
-
-      card.innerHTML = `
-        <div class="project-top">
-          <div class="project-topline">
-            <span class="project-badge">${project.category || "Project"}</span>
-            <span class="project-status">${project.status || ""}</span>
-          </div>
-          <div class="project-header">
-            <h3>${project.title}</h3>
-            ${project.subtitle ? `<div class="project-subtitle">${project.subtitle}</div>` : ""}
-            <p class="project-description">${project.description}</p>
-          </div>
-          <div class="project-tech">
-            ${techBadges}
-          </div>
-        </div>
-        <div class="project-actions">
-          ${actionHtml}
-        </div>
-      `;
-      projectsGrid.appendChild(card);
-    });
-  }
-
-  /* -----------------------------------------------------------
-     Copy Contact Details (Email / Phone)
-  ----------------------------------------------------------- */
-  const copyButtons = document.querySelectorAll(".copy-button");
-  const copyFeedback = document.querySelector("#copy-feedback");
-
-  copyButtons.forEach((btn) => {
+  copyBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const textToCopy = btn.getAttribute("data-copy");
-      if (!textToCopy) return;
+      const targetText = btn.getAttribute("data-clipboard");
+      if (!targetText) return;
 
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        if (copyFeedback) {
-          copyFeedback.textContent = `Copied "${textToCopy}" to clipboard.`;
+      navigator.clipboard.writeText(targetText).then(() => {
+        if (copyNotify) {
+          copyNotify.textContent = `Copied "${targetText}" to clipboard.`;
           setTimeout(() => {
-            copyFeedback.textContent = "";
-          }, 3500);
+            copyNotify.textContent = "";
+          }, 3200);
         }
       }).catch(() => {
-        if (copyFeedback) {
-          copyFeedback.textContent = "Unable to auto-copy. Please select and copy manually.";
+        if (copyNotify) {
+          copyNotify.textContent = "Please select and copy manually.";
         }
       });
     });
