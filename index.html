@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090e0c">
+  <meta name="description" content="Portfolio of John Lloyd F. Villar — Computer Engineering student at ICCT Colleges focusing on backend systems, web development, and dependable software engineering.">
+  <meta name="author" content="John Lloyd F. Villar">
+  <title>John Lloyd Villar — Computer Engineering &amp; Software Development</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('jlv-portfolio-theme');
+        var systemPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.documentElement.dataset.theme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    }());
+  </script>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/projects.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Global Header -->
+  <header class="site-header" id="top">
+    <div class="header-inner container">
+      <a class="brand" href="#home" aria-label="John Lloyd F. Villar portfolio home">
+        <span class="brand-avatar-box">JLV</span>
+        <span class="brand-copy">
+          <strong>JOHN LLOYD VILLAR</strong>
+          <span>PORTFOLIO / 2026</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-navigation" id="primary-navigation" aria-label="Primary navigation">
+        <a href="#home" class="nav-link is-active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-layout">
+        <div class="hero-content">
+          <p class="eyebrow">
+            <span class="status-dot"></span>
+            COMPUTER ENGINEERING / BACKEND &amp; SYSTEMS
+          </p>
+          <h1 id="hero-title">
+            Engineering dependable systems, from low-level logic <span>to web applications.</span>
+          </h1>
+          <p class="hero-intro">
+            Hi, I'm <strong>John Lloyd F. Villar</strong> — a 4th-year Computer Engineering student at ICCT Colleges based in Rodriguez, Rizal, Philippines. I focus on backend architecture, API data flow, and reliable system design while keeping user interfaces straightforward and functional.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore projects &rarr;</a>
+            <a class="button button-secondary" href="assets/resume.pdf" download="John-Lloyd-Villar-Resume.pdf">Download resume &darr;</a>
+            <a class="button button-outline" href="#contact">Get in touch</a>
+          </div>
+          <div class="hero-notes" aria-label="Core focus points">
+            <span><span class="symbol">+</span> Backend API design</span>
+            <span><span class="symbol">+</span> Disciplined execution</span>
+            <span><span class="symbol">+</span> Continuous learning</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Personal profile and technical specifications">
+          <div class="visual-topline">
+            <span>PERSONAL PROFILE</span>
+            <span>JLV // 001</span>
+          </div>
+          <div class="profile-frame">
+            <span class="frame-corner frame-corner-tl" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner-tr" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner-bl" aria-hidden="true"></span>
+            <span class="frame-corner frame-corner-br" aria-hidden="true"></span>
+            <img src="assets/profile.png" alt="Portrait photo of John Lloyd F. Villar" width="400" height="440">
+          </div>
+          <div class="visual-specs">
+            <div class="spec-item">
+              <span class="spec-label">Focus</span>
+              <span class="spec-value">Backend &amp; Systems</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Approach</span>
+              <span class="spec-value">Learn / Verify / Build</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Status</span>
+              <span class="spec-value">4th Year Student</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">01 / BACKGROUND &amp; PERSPECTIVE</p>
+            <h2 id="about-title">A little <span>about me.</span></h2>
+          </div>
+          <p class="section-aside">Discipline in training, precision in code, and curiosity in everything.</p>
+        </div>
+        <div class="about-layout">
+          <div class="about-copy">
+            <p class="lead-copy">
+              I am interested in how technology bridges low-level hardware constraints with high-level software services that people rely on every day.
+            </p>
+            <p>
+              Studying Computer Engineering at ICCT Colleges gives me a solid perspective on both sides of the machine. I started with foundational C++, logic circuits, and computer architecture, which helped me understand how computers manage memory and process instructions under the hood. From there, I moved into frontend web interfaces, learning how to design clear layouts and manage state.
+            </p>
+            <p>
+              Right now, my active technical concentration is on <strong>backend development</strong> and structured databases. I want to understand how data moves through servers, how RESTful APIs stay predictable and secure, and how database schemas can be optimized for real-world load. I believe that good software engineering is about asking the right questions, reading documentation carefully, and verifying assumptions before deploying.
+            </p>
+            <p>
+              Beyond technical coursework, I value personal discipline and consistency. Whether adhering to a workout program at the gym or diagnosing a network configuration bug, steady, patient effort is what produces lasting results.
+            </p>
+          </div>
+
+          <div class="about-principles">
+            <article class="principle-card">
+              <div class="principle-top">
+                <span class="principle-index">01 / LOGIC</span>
+              </div>
+              <h3>Engineering mindset</h3>
+              <p>Break complex systems down into testable modules, trace data flow, and solve the underlying problem rather than masking symptoms.</p>
+            </article>
+
+            <article class="principle-card">
+              <div class="principle-top">
+                <span class="principle-index">02 / PRACTICE</span>
+              </div>
+              <h3>Continuous exploration</h3>
+              <p>Learn by constructing real projects — whether that means building mobile backends, setting up structured cabling plans, or testing API endpoints.</p>
+            </article>
+
+            <article class="principle-card">
+              <div class="principle-top">
+                <span class="principle-index">03 / DISCIPLINE</span>
+              </div>
+              <h3>Physical &amp; mental grit</h3>
+              <p>Habits built in the gym — consistency, progressive overload, and patience — translate directly to debugging and long-term project delivery.</p>
+            </article>
+
+            <article class="principle-card">
+              <div class="principle-top">
+                <span class="principle-index">04 / INTEGRITY</span>
+              </div>
+              <h3>Attention to detail</h3>
+              <p>Experience in strict testing environments taught me the importance of protocol, credential verification, and dependable teamwork.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills & Tools Section -->
+    <section class="section section-skills" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">02 / TECHNICAL TOOLKIT</p>
+            <h2 id="skills-title">Skills &amp; <span>tools.</span></h2>
+          </div>
+          <p class="section-aside">A practical toolkit grounded in coursework and ongoing project work.</p>
+        </div>
+
+        <div class="skills-intro">
+          <p>
+            These are the technologies, programming languages, and tools I actively practice with. Rather than assigning arbitrary percentage bars, here is the factual scope of what I use to build.
+          </p>
+          <span class="micro-stamp">TOOLKIT / 2026</span>
+        </div>
+
+        <div class="skill-filters" role="group" aria-label="Filter skills by category">
+          <button class="filter-button is-selected" type="button" data-skill-filter="all" aria-pressed="true">All tools</button>
+          <button class="filter-button" type="button" data-skill-filter="Engineering and CAD" aria-pressed="false">Engineering &amp; CAD</button>
+          <button class="filter-button" type="button" data-skill-filter="Web Technologies" aria-pressed="false">Web technologies</button>
+          <button class="filter-button" type="button" data-skill-filter="Development Tools" aria-pressed="false">Development tools</button>
+          <button class="filter-button" type="button" data-skill-filter="Version Control" aria-pressed="false">Version control</button>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- AutoCAD -->
+          <article class="skill-card" data-skill-category="Engineering and CAD">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="var(--accent)" d="M12 1.35 1.55 21.7h5.1L12 10.45l5.38 11.25h5.07L12 1.35Z"/>
+                  <path fill="var(--panel)" d="M12 10.55 8.95 17h6.1L12 10.55Z"/>
+                  <path fill="var(--accent)" d="M3.1 18.7h4.35l-1.45 3H1.55l1.55-3Z"/>
+                </svg>
+              </div>
+              <span class="skill-type">CAD &amp; Design</span>
+            </div>
+            <h3>AutoCAD</h3>
+            <p>Computer-aided design, 2D drafting, floor plans, and technical documentation for engineering facilities.</p>
+          </article>
+
+          <!-- C++ -->
+          <article class="skill-card" data-skill-category="Engineering and CAD">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="var(--accent)" d="M12 2.5a9.5 9.5 0 106.7 16.2l-2.2-2.2A6.4 6.4 0 1118.4 12h-2.9l3.5 3.5 3.5-3.5h-2.9A9.5 9.5 0 0012 2.5z"/>
+                  <path fill="var(--accent)" d="M17.5 9.5h1.2v1.2h1.2v1.2h-1.2v1.2h-1.2v-1.2h-1.2v-1.2h1.2V9.5zm4 0h1.2v1.2h1.2v1.2h-1.2v1.2h-1.2v-1.2h-1.2v-1.2h1.2V9.5z"/>
+                </svg>
+              </div>
+              <span class="skill-type">Systems Logic</span>
+            </div>
+            <h3>C++</h3>
+            <p>Foundations in object-oriented programming, data structures, pointer mechanics, and memory allocation.</p>
+          </article>
+
+          <!-- Computer Networking & Communications -->
+          <article class="skill-card" data-skill-category="Engineering and CAD">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="4" width="6" height="5" rx="1" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                  <rect x="15" y="4" width="6" height="5" rx="1" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                  <rect x="9" y="15" width="6" height="5" rx="1" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                  <path d="M6 9v3h12V9M12 12v3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                </svg>
+              </div>
+              <span class="skill-type">Infrastructure</span>
+            </div>
+            <h3>Computer Networking</h3>
+            <p>Structured cabling standards, TCP/IP stack, switch and router topologies, subnet planning, and multi-floor building infrastructure.</p>
+          </article>
+
+          <!-- Embedded Systems / ESP32 -->
+          <article class="skill-card" data-skill-category="Engineering and CAD">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="5" y="5" width="14" height="14" rx="2" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                  <circle cx="9" cy="9" r="1.5" fill="var(--accent)"/>
+                  <circle cx="15" cy="9" r="1.5" fill="var(--accent)"/>
+                  <circle cx="12" cy="15" r="1.5" fill="var(--accent)"/>
+                  <path d="M2 9h3M2 15h3M19 9h3M19 15h3M9 2v3M15 2v3M9 19v3M15 19v3" stroke="var(--accent)" stroke-width="2"/>
+                </svg>
+              </div>
+              <span class="skill-type">Hardware Interfacing</span>
+            </div>
+            <h3>Embedded Systems (ESP32)</h3>
+            <p>Microcontroller programming, GPIO control, wireless trigger synchronization, and hardware-software communication protocols.</p>
+          </article>
+
+          <!-- HTML -->
+          <article class="skill-card" data-skill-category="Web Technologies">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#E34F26" d="M3 2l1.8 17.5 7.2 2 7.2-2L21 2H3zm14.3 6H8.2l.2 2.6h8.5l-.6 6.3-4.3 1.2-4.3-1.2-.3-3.3h2.6l.1 1.5 1.9.5 1.9-.5.2-2.3H8l-.7-7.2h10.4l-.4 2.4z"/>
+                </svg>
+              </div>
+              <span class="skill-type">Web Structure</span>
+            </div>
+            <h3>HTML5</h3>
+            <p>Structuring accessible, semantic documents, accessible form controls, and standards-compliant web pages.</p>
+          </article>
+
+          <!-- CSS -->
+          <article class="skill-card" data-skill-category="Web Technologies">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#1572B6" d="M3 2l1.8 17.5 7.2 2 7.2-2L21 2H3zm14.5 4.5l-.2 2.5H8.3l.2 2.5h8.3l-.7 7.2-4.1 1.1-4.1-1.1-.3-3.6h2.5l.1 1.7 1.8.5 1.8-.5.2-2.6H6.1L5.3 4.5h12.2v2z"/>
+                </svg>
+              </div>
+              <span class="skill-type">Web Presentation</span>
+            </div>
+            <h3>CSS3</h3>
+            <p>Responsive multi-breakpoint design, Flexbox, CSS Grid layouts, and custom properties for maintainable theme systems.</p>
+          </article>
+
+          <!-- VS Code -->
+          <article class="skill-card" data-skill-category="Development Tools">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#007ACC" d="M17.5 .6 6.6 10 2.4 7.1 0 9.2 4.3 12 0 14.8 2.4 16.9 6.6 14 17.5 23.4 24 20.9V3.1L17.5 .6Z"/>
+                </svg>
+              </div>
+              <span class="skill-type">Development Environment</span>
+            </div>
+            <h3>VS Code</h3>
+            <p>Primary workspace for development, terminal workflows, code editing, and integrated version control management.</p>
+          </article>
+
+          <!-- Visual Studio -->
+          <article class="skill-card" data-skill-category="Development Tools">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#5C2D91" d="M17.4 1.3l-8 7.3-5-3.8-2.6 1.3 4.2 4.4-4.2 4.4 2.6 1.3 5-3.8 8 7.3 4.6-2.2V3.5l-4.6-2.2zm-2.8 11.2l-4.8-4.2 4.8-4.2v8.4z"/>
+                </svg>
+              </div>
+              <span class="skill-type">C++ IDE Toolchain</span>
+            </div>
+            <h3>Visual Studio</h3>
+            <p>Windows engineering environment utilized for C++ compilation, debugging, and native software builds.</p>
+          </article>
+
+          <!-- Git -->
+          <article class="skill-card" data-skill-category="Version Control">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#F05032" d="M22.1 10.7l-8.8-8.8c-.8-.8-2.1-.8-2.9 0L8.7 3.6l3.7 3.7c.9-.3 1.9 0 2.6.7.7.7 1 1.7.7 2.6l3.6 3.6c.9-.3 1.9 0 2.6.7 1.1 1.1 1.1 2.9 0 4s-2.9 1.1-4 0c-.8-.8-1-2-.6-3l-3.3-3.3v7.3c.3.2.6.5.8.8 1.1 1.1 1.1 2.9 0 4s-2.9 1.1-4 0-1.1-2.9 0-4c.4-.4.9-.7 1.4-.8v-7.3c-.5-.1-1-.4-1.4-.8-.8-.8-1-2-.6-3L5.8 6.5 1.9 10.4c-.8.8-.8 2.1 0 2.9l8.8 8.8c.8.8 2.1.8 2.9 0l8.5-8.5c.8-.8.8-2.1 0-2.9z"/>
+                </svg>
+              </div>
+              <span class="skill-type">Version Tracking</span>
+            </div>
+            <h3>Git</h3>
+            <p>Command-line branch management, incremental commit discipline, resolving merge conflicts, and repository hygiene.</p>
+          </article>
+
+          <!-- GitHub -->
+          <article class="skill-card" data-skill-category="Version Control">
+            <div class="skill-header">
+              <div class="skill-logo-box">
+                <svg class="skill-logo-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.6 8.2-6.1 8.2-11.4C24 5.9 18.6.5 12 .5z"/>
+                </svg>
+              </div>
+              <span class="skill-type">Code Hosting</span>
+            </div>
+            <h3>GitHub</h3>
+            <p>Hosting personal projects, managing documentation, issue tracking, and maintaining open source code repositories.</p>
+          </article>
+        </div>
+
+        <p class="filter-status" id="skill-filter-status" aria-live="polite">Showing all 10 tools.</p>
+
+        <!-- Spoken Languages Banner -->
+        <div class="languages-banner">
+          <div class="languages-banner-content">
+            <h4>Communicative Languages</h4>
+            <p>Languages spoken and used for professional technical documentation, code reviews, and group collaboration.</p>
+          </div>
+          <div class="languages-list">
+            <div class="language-item">
+              <strong>English</strong>
+              <span>Professional Working Proficiency</span>
+            </div>
+            <div class="language-item">
+              <strong>Tagalog</strong>
+              <span>Native / Bilingual</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section section-projects" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">03 / SELECTED WORK</p>
+            <h2 id="projects-title">Featured <span>projects.</span></h2>
+          </div>
+          <p class="section-aside">A record of academic engineering and independent software builds.</p>
+        </div>
+
+        <div class="projects-grid" id="projects-grid" aria-live="polite">
+          <!-- Fallback / Static Rendering will be enhanced by projects.js -->
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-topline">
+                <span class="project-badge">Mobile &amp; Cloud</span>
+                <span class="project-status">Active Project</span>
+              </div>
+              <div class="project-header">
+                <h3>Project SyncedN</h3>
+                <div class="project-subtitle">Mobile &amp; Cloud Management System</div>
+                <p class="project-description">
+                  A multi-role Android application designed with separate administrator and member workflows. Features real-time credential verification, state management, role-based access control, and live database synchronization.
+                </p>
+              </div>
+              <div class="project-tech">
+                <span>Kotlin</span><span>Android SDK</span><span>Cloud Database</span><span>Role Access Control</span><span>Material Design</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <a class="project-link" href="https://github.com/johnllydvllr12-create" target="_blank" rel="noopener noreferrer">Source code &rarr;</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-topline">
+                <span class="project-badge">Engineering &amp; Networking</span>
+                <span class="project-status">Completed (May 2026)</span>
+              </div>
+              <div class="project-header">
+                <h3>Three-Story Building Network Infrastructure</h3>
+                <div class="project-subtitle">Data Communications &amp; Structured Cabling</div>
+                <p class="project-description">
+                  Engineered a complete network infrastructure design for a three-story commercial facility accommodating 20+ distributed user units (COEPRO14 Group 9N). Included backbone routing, patch panel distribution, VLAN segmentation, and redundant failover paths.
+                </p>
+              </div>
+              <div class="project-tech">
+                <span>Network Topology</span><span>Structured Cabling</span><span>Packet Routing</span><span>VLANs</span><span>Documentation</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <span class="project-link-muted">Academic Engineering Blueprints</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-topline">
+                <span class="project-badge">Embedded Systems</span>
+                <span class="project-status">Prototype</span>
+              </div>
+              <div class="project-header">
+                <h3>SyncShot: ESP32 Camera Trigger System</h3>
+                <div class="project-subtitle">Embedded Hardware &amp; Telemetry</div>
+                <p class="project-description">
+                  A hardware-software prototype utilizing ESP32 microcontrollers for synchronized, low-latency wireless camera shutter actuation. Coordinates multiple camera viewpoints simultaneously via Wi-Fi telemetry and GPIO switching.
+                </p>
+              </div>
+              <div class="project-tech">
+                <span>ESP32</span><span>Embedded C++</span><span>Wi-Fi Telemetry</span><span>Hardware Prototyping</span><span>GPIO</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <span class="project-link-muted">Hardware &amp; Firmware Prototype</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <div class="project-topline">
+                <span class="project-badge">Web Development</span>
+                <span class="project-status">Completed</span>
+              </div>
+              <div class="project-header">
+                <h3>Lloydcodex Web Interface</h3>
+                <div class="project-subtitle">Frontend Architecture &amp; Design</div>
+                <p class="project-description">
+                  A responsive, accessible frontend interface created to explore modern CSS techniques, responsive flex/grid layouts, clean typographic hierarchy, and interactive styling without heavy framework overhead.
+                </p>
+              </div>
+              <div class="project-tech">
+                <span>HTML5</span><span>CSS3</span><span>Responsive Design</span><span>GitHub Pages</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <a class="project-link" href="https://github.com/johnllydvllr12-create/Lloydcodex" target="_blank" rel="noopener noreferrer">Source code &rarr;</a>
+              <a class="project-link" href="https://johnllydvllr12-create.github.io/Lloydcodex/" target="_blank" rel="noopener noreferrer">Live preview &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section section-experience" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">04 / EXPERIENCE LOG</p>
+            <h2 id="experience-title">Work &amp; <span>project history.</span></h2>
+          </div>
+          <p class="section-aside">Hands-on responsibility under strict professional protocols.</p>
+        </div>
+
+        <div class="timeline-list">
+          <!-- Data Matics -->
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-period">SEPT 2025 — JAN 2026</span>
+              <span class="timeline-role-type">Professional Experience</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Examination Administrator (Seasonal Account)</h3>
+              <div class="timeline-org">Data Matics — Legal Examination Delivery</div>
+              <p class="timeline-description">
+                Managed procedural operations and candidate admissions for formal law school examinations under strict non-disclosure and proctoring guidelines.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Conducted structured identification and credential verification for student candidates prior to examination entry.</li>
+                <li>Conducted one-on-one candidate interviews to ensure all requirements and testing conditions were met.</li>
+                <li>Monitored examination rooms continuously to prevent academic dishonesty and uphold testing integrity.</li>
+                <li>Maintained secure, distraction-free testing environments and reported real-time incident logs to presiding officers.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Engineering Capstone / Research -->
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-period">2023 — PRESENT</span>
+              <span class="timeline-role-type">Academic Team Projects</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Computer Engineering Research &amp; Infrastructure Design</h3>
+              <div class="timeline-org">ICCT Colleges — Department of Computer Engineering (Group 9N)</div>
+              <p class="timeline-description">
+                Collaborative engineering coursework focusing on telecommunications, hardware logic, and network system engineering.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Authored the architectural blueprints for a 3-floor facility network serving 20+ distributed end-user units.</li>
+                <li>Calculated link budgets, attenuation specs, and switch port allocations for structured Cat6 cabling.</li>
+                <li>Balanced project deadlines and technical specifications in cross-functional student engineering teams.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section section-education" id="education" aria-labelledby="education-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">05 / ACADEMIC BACKGROUND</p>
+            <h2 id="education-title">Education &amp; <span>growth.</span></h2>
+          </div>
+          <p class="section-aside">Building foundational engineering knowledge for the long term.</p>
+        </div>
+
+        <div class="timeline-list">
+          <!-- College -->
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-period">2023 — 2027 (EXPECTED)</span>
+              <span class="timeline-role-type">Higher Education</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Bachelor of Science in Computer Engineering (BSCpE)</h3>
+              <div class="timeline-org">ICCT Colleges — Cainta / Rodriguez, Rizal</div>
+              <p class="timeline-description">
+                Currently 4th-Year Undergraduate Student. The program integrates computer hardware design, software engineering, digital logic, and communication networks.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Relevant Coursework: Data Communications &amp; Networking, Computer Architecture, Object-Oriented Programming (C++), Digital Logic Circuits, Embedded Systems.</li>
+                <li>Hands-on laboratory work with microcontrollers, breadboard prototyping, circuit analysis, and software design.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- High School -->
+          <article class="timeline-item">
+            <div class="timeline-meta">
+              <span class="timeline-period">GRADUATED</span>
+              <span class="timeline-role-type">Secondary Education</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Senior High School Graduate</h3>
+              <div class="timeline-org">Pamantasan ng Lungsod ng Marikina (PLMar)</div>
+              <p class="timeline-description">
+                Completed secondary education with focused coursework in mathematics, scientific problem-solving, and foundational computer literacy.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beyond Code / Interests -->
+    <section class="section section-passions" id="beyond" aria-labelledby="beyond-title">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">06 / PERSONAL PERSPECTIVE</p>
+            <h2 id="beyond-title">Beyond the <span>screen.</span></h2>
+          </div>
+          <p class="section-aside">The habits and pursuits that keep mind and body grounded.</p>
+        </div>
+
+        <div class="passions-grid">
+          <article class="passion-card">
+            <div class="passion-header">
+              <span class="passion-tag">Discipline</span>
+            </div>
+            <h3>Gym &amp; Strength Training</h3>
+            <p>
+              Weight training instills consistency, progressive overload, and mental resilience. Pushing through tough sets teaches the same stamina needed during difficult debugging sessions.
+            </p>
+          </article>
+
+          <article class="passion-card">
+            <div class="passion-header">
+              <span class="passion-tag">Focus</span>
+            </div>
+            <h3>Reading Fiction &amp; Novels</h3>
+            <p>
+              Diving into books trains sustained attention and expands perspective. In a world full of micro-distractions, long-form reading sharpens concentration and imagination.
+            </p>
+          </article>
+
+          <article class="passion-card">
+            <div class="passion-header">
+              <span class="passion-tag">Balance</span>
+            </div>
+            <h3>Outdoor Walks &amp; Trekking</h3>
+            <p>
+              Getting outdoors clears mental clutter. Taking a long walk away from monitors often yields clarity on tricky architecture and engineering challenges.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel">
+          <div class="contact-copy">
+            <p class="section-kicker">07 / GET IN TOUCH</p>
+            <h2 id="contact-title">Let's connect &amp; <span>collaborate.</span></h2>
+            <p>
+              I am open to internship opportunities, entry-level engineering roles, academic collaborations, or discussions on backend systems and software development. Feel free to reach out directly through email, phone, or GitHub.
+            </p>
+            <div class="contact-links-row">
+              <a class="button button-primary" href="mailto:Johnnlloyd.villar@gmail.com">Send an email &rarr;</a>
+              <a class="button button-secondary" href="assets/resume.pdf" download="John-Lloyd-Villar-Resume.pdf">Download resume &darr;</a>
+            </div>
+          </div>
+
+          <div class="contact-details">
+            <!-- Email -->
+            <div class="contact-card-item">
+              <div class="contact-card-info">
+                <span class="contact-card-label">Email Address</span>
+                <span class="contact-card-value">Johnnlloyd.villar@gmail.com</span>
+              </div>
+              <button class="copy-button" type="button" data-copy="Johnnlloyd.villar@gmail.com" aria-label="Copy email address">Copy</button>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-card-item">
+              <div class="contact-card-info">
+                <span class="contact-card-label">Mobile Phone</span>
+                <span class="contact-card-value">+63 921 869 3495</span>
+              </div>
+              <button class="copy-button" type="button" data-copy="+639218693495" aria-label="Copy phone number">Copy</button>
+            </div>
+
+            <!-- GitHub -->
+            <div class="contact-card-item">
+              <div class="contact-card-info">
+                <span class="contact-card-label">GitHub Profile</span>
+                <span class="contact-card-value">johnllydvllr12-create</span>
+              </div>
+              <a class="copy-button" href="https://github.com/johnllydvllr12-create" target="_blank" rel="noopener noreferrer">Visit</a>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-card-item">
+              <div class="contact-card-info">
+                <span class="contact-card-label">Location</span>
+                <span class="contact-card-value">Rodriguez, Rizal, Philippines</span>
+              </div>
+              <span class="contact-card-label">GMT+8</span>
+            </div>
+
+            <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        JLV <span>/ JOHN LLOYD VILLAR</span>
+      </div>
+      <p>Built with clean HTML and CSS. Designed with discipline and care.</p>
+      <a class="back-to-top" href="#top">Back to top &uarr;</a>
+      <span class="footer-year">&copy; <span id="footer-year">2026</span></span>
+    </div>
+  </footer>
+</body>
+</html>

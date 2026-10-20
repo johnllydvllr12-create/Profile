@@ -14,6 +14,12 @@
   <b>Currently 4th-Year Computer Engineering Student at ICCT Colleges</b> • <b>Aspiring Full-Stack Software Engineer</b>
 </p>
 
+<p align="center">
+  <a href="https://johnllydvllr12-create.github.io/Profile/">
+    <img src="https://img.shields.io/badge/Live_Portfolio-johnllydvllr12--create.github.io%2FProfile-10b981?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portfolio Website" />
+  </a>
+</p>
+
 [![Email](https://img.shields.io/badge/Email-Johnnlloyd.villar%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Johnnlloyd.villar@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-johnllydvllr12--create-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/johnllydvllr12-create)
 [![Location](https://img.shields.io/badge/Location-Rodriguez%2C%20Rizal%2C%20PH-008080?style=for-the-badge&logo=google-maps&logoColor=white)](https://maps.google.com/?q=Rodriguez,Rizal,Philippines)
@@ -133,6 +139,9 @@ When I step away from the keyboard and development environments:
 Feel free to reach out for collaborations, project opportunities, or just a friendly conversation about tech and fitness!
 
 <p align="center">
+  <a href="https://johnllydvllr12-create.github.io/Profile/">
+    <img src="https://img.shields.io/badge/Live_Portfolio-Visit_Website-10b981?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portfolio Website" />
+  </a>
   <a href="mailto:Johnnlloyd.villar@gmail.com">
     <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
   </a>
