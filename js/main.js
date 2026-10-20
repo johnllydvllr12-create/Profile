@@ -134,6 +134,8 @@
    * INTERACTIVE CLICK PHYSICS & CYBER NODE SYSTEM
    * ---------------------------------------------------- */
   const canvas = document.getElementById("physics-canvas");
+  let globalTriggerImpulse = null;
+
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext("2d");
     let width = 0;
@@ -191,7 +193,7 @@
     resize();
 
     // Trigger impulse and sparks on screen click
-    function triggerPhysicsImpulse(clickX, clickY) {
+    function triggerPhysicsImpulse(clickX, clickY, intensity = 1.0) {
       if (prefersReducedMotion) return;
 
       // 1. Expanding cyber shockwave ring
@@ -199,14 +201,14 @@
         x: clickX,
         y: clickY,
         radius: 4,
-        maxRadius: Math.min(width, height) * 0.35 + 140,
-        speed: 9.5,
+        maxRadius: (Math.min(width, height) * 0.35 + 140) * Math.min(intensity, 1.4),
+        speed: 9.5 * Math.min(intensity, 1.3),
         alpha: 0.85
       });
 
       // 2. Severe physical impulse applied to all nearby nodes
-      const blastRadius = 360;
-      const blastForce = 34;
+      const blastRadius = 360 * Math.min(intensity, 1.3);
+      const blastForce = 34 * intensity;
 
       nodes.forEach((n) => {
         const dx = n.x - clickX;
@@ -222,10 +224,10 @@
       });
 
       // 3. Kinetic high-speed sparks radiating from click
-      const sparkCount = Math.floor(Math.random() * 12) + 24;
+      const sparkCount = Math.floor((Math.random() * 12 + 24) * intensity);
       for (let i = 0; i < sparkCount; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 9 + 3;
+        const speed = (Math.random() * 9 + 3) * Math.min(intensity, 1.3);
         sparks.push({
           x: clickX,
           y: clickY,
@@ -241,17 +243,15 @@
       }
     }
 
-    // Global click listener for physics trigger
+    globalTriggerImpulse = triggerPhysicsImpulse;
+
+    // Global click listener for general physics background trigger
     window.addEventListener("pointerdown", (e) => {
-      // Don't trigger if clicking interactive buttons or links directly to keep navigation clean
-      const interactive = e.target.closest("button, a, input, textarea, select");
-      if (interactive) {
-        // Still give subtle impulse from the button center
-        const rect = interactive.getBoundingClientRect();
-        triggerPhysicsImpulse(rect.left + rect.width / 2, rect.top + rect.height / 2);
-      } else {
-        triggerPhysicsImpulse(e.clientX, e.clientY);
+      // Don't trigger if clicking interactive buttons, inputs, links, or modal controls
+      if (e.target.closest("button, a, input, textarea, select, .physics-zoom-overlay")) {
+        return;
       }
+      triggerPhysicsImpulse(e.clientX, e.clientY);
     }, { passive: true });
 
     // Track mouse coordinates for subtle interactive repulsion
@@ -419,5 +419,213 @@
 
     requestAnimationFrame(render);
   }
+
+  /* ----------------------------------------------------
+   * SCHEMATICS LAYOUT SWITCHER (CARDS VS. TABLE)
+   * ---------------------------------------------------- */
+  const btnViewCards = document.querySelector("#view-cards-btn");
+  const btnViewTable = document.querySelector("#view-table-btn");
+  const viewGridContainer = document.querySelector("#projects-grid-view");
+  const viewTableContainer = document.querySelector("#projects-table-view");
+
+  function switchSchematicsLayout(mode) {
+    const isTable = mode === "table";
+    if (viewGridContainer) viewGridContainer.style.display = isTable ? "none" : "grid";
+    if (viewTableContainer) viewTableContainer.style.display = isTable ? "block" : "none";
+
+    if (btnViewCards) {
+      btnViewCards.classList.toggle("active", !isTable);
+      btnViewCards.setAttribute("aria-pressed", String(!isTable));
+    }
+    if (btnViewTable) {
+      btnViewTable.classList.toggle("active", isTable);
+      btnViewTable.setAttribute("aria-pressed", String(isTable));
+    }
+  }
+
+  btnViewCards?.addEventListener("click", () => switchSchematicsLayout("cards"));
+  btnViewTable?.addEventListener("click", () => switchSchematicsLayout("table"));
+
+  /* ----------------------------------------------------
+   * PHYSICS ZOOM INSPECTION MODAL SYSTEM
+   * When clicking table rows or project cards, view zooms in with physics!
+   * ---------------------------------------------------- */
+  const zoomOverlay = document.querySelector("#zoom-overlay");
+  const zoomDialog = document.querySelector("#modal-dialog");
+  const zoomCloseBtn = document.querySelector("#modal-close");
+  const zoomScrim = document.querySelector("#modal-scrim");
+  const zoomSysId = document.querySelector("#modal-sys-id");
+  const zoomBody = document.querySelector("#modal-body");
+
+  let lastFocusedTrigger = null;
+
+  function openProjectZoomModal(projectId, triggerElement, evt) {
+    const projectsList = window.PORTFOLIO_PROJECTS || [];
+    const project = projectsList.find((p) => p.id === projectId) || projectsList[0];
+    if (!project) return;
+
+    lastFocusedTrigger = triggerElement;
+
+    // Trigger physics shockwave impulse at click coordinates
+    let clickX = window.innerWidth / 2;
+    let clickY = window.innerHeight / 2;
+
+    if (evt && evt.clientX && evt.clientY) {
+      clickX = evt.clientX;
+      clickY = evt.clientY;
+    } else if (triggerElement) {
+      const rect = triggerElement.getBoundingClientRect();
+      clickX = rect.left + rect.width / 2;
+      clickY = rect.top + rect.height / 2;
+    }
+
+    if (globalTriggerImpulse) {
+      globalTriggerImpulse(clickX, clickY, 1.5);
+    }
+
+    // Populate modal contents
+    if (zoomSysId) {
+      zoomSysId.textContent = `INSPECTION :: ${project.code || "SYSTEM"}`;
+    }
+
+    if (zoomBody) {
+      const techChipsHtml = (project.technologies || [])
+        .map((t) => `<span class="sch-tag">${t}</span>`)
+        .join("");
+
+      const detailsHtml = (project.details || [])
+        .map((d) => `<li>${d}</li>`)
+        .join("");
+
+      const actionLinks = [];
+      if (project.repositoryUrl) {
+        actionLinks.push(`<a class="tech-btn tech-btn-primary" href="${project.repositoryUrl}" target="_blank" rel="noopener noreferrer">[INSPECT_REPOSITORY] &rarr;</a>`);
+      }
+      if (project.demoUrl) {
+        actionLinks.push(`<a class="tech-btn tech-btn-secondary" href="${project.demoUrl}" target="_blank" rel="noopener noreferrer">[LAUNCH_LIVE_SITE] &rarr;</a>`);
+      }
+      if (!project.repositoryUrl && !project.demoUrl) {
+        actionLinks.push(`<span class="sch-link-locked">Academic Capstone &bull; Proprietary System Schematics</span>`);
+      }
+
+      zoomBody.innerHTML = `
+        <div class="modal-proj-hero">
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <span class="schematic-badge">${project.tag || "Engineering Build"}</span>
+            <span class="schematic-state">${project.status || "[COMPLETE]"}</span>
+          </div>
+          <h2 class="modal-hero-title">${project.title}</h2>
+          <div class="modal-hero-sub">${project.subtitle || ""}</div>
+          <p class="modal-desc-text">${project.description || ""}</p>
+        </div>
+
+        <div class="modal-specs-grid">
+          <div class="modal-spec-cell">
+            <span class="modal-spec-k">Engineering Domain</span>
+            <span class="modal-spec-v">${project.tag || "Systems & Hardware"}</span>
+          </div>
+          <div class="modal-spec-cell">
+            <span class="modal-spec-k">Role Clearance</span>
+            <span class="modal-spec-v">${project.role || "Lead Developer"}</span>
+          </div>
+          <div class="modal-spec-cell">
+            <span class="modal-spec-k">Current Phase</span>
+            <span class="modal-spec-v">${project.status || "Operational"}</span>
+          </div>
+          <div class="modal-spec-cell">
+            <span class="modal-spec-k">Architectural Pattern</span>
+            <span class="modal-spec-v">${project.architecture || "Modular Engineering"}</span>
+          </div>
+        </div>
+
+        ${detailsHtml ? `
+          <div class="modal-subhead">System Implementation Notes</div>
+          <ul class="modal-details-list">
+            ${detailsHtml}
+          </ul>
+        ` : ""}
+
+        <div class="modal-subhead">Core Technology Stack</div>
+        <div class="schematic-tags" style="margin-bottom: 24px;">
+          ${techChipsHtml}
+        </div>
+
+        <div class="modal-actions-row">
+          ${actionLinks.join("")}
+        </div>
+      `;
+    }
+
+    if (zoomOverlay) {
+      zoomOverlay.classList.add("open");
+      zoomOverlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => zoomDialog?.focus(), 50);
+    }
+  }
+
+  function closeProjectZoomModal() {
+    if (!zoomOverlay || !zoomOverlay.classList.contains("open")) return;
+    zoomOverlay.classList.remove("open");
+    zoomOverlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if (lastFocusedTrigger) {
+      lastFocusedTrigger.focus();
+      lastFocusedTrigger = null;
+    }
+  }
+
+  zoomCloseBtn?.addEventListener("click", closeProjectZoomModal);
+  zoomScrim?.addEventListener("click", closeProjectZoomModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && zoomOverlay?.classList.contains("open")) {
+      closeProjectZoomModal();
+    }
+  });
+
+  // Attach click listeners to all table rows
+  const tableZoomRows = document.querySelectorAll(".table-zoom-row");
+  tableZoomRows.forEach((row) => {
+    const projId = row.getAttribute("data-zoom-id");
+    row.addEventListener("click", (evt) => {
+      openProjectZoomModal(projId, row, evt);
+    });
+    row.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter" || evt.key === " ") {
+        evt.preventDefault();
+        openProjectZoomModal(projId, row, evt);
+      }
+    });
+  });
+
+  // Attach click listeners to all schematic cards
+  const cardZoomables = document.querySelectorAll(".card-zoomable");
+  cardZoomables.forEach((card) => {
+    const projId = card.getAttribute("data-zoom-id");
+    card.addEventListener("click", (evt) => {
+      // Don't intercept direct links
+      if (evt.target.closest("a")) return;
+      openProjectZoomModal(projId, card, evt);
+    });
+    card.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter" || evt.key === " ") {
+        if (evt.target.closest("a")) return;
+        evt.preventDefault();
+        openProjectZoomModal(projId, card, evt);
+      }
+    });
+  });
+
+  // Capabilities Matrix & Telemetry cards click impulse feedback
+  const techCards = document.querySelectorAll(".rack-card, .telemetry-card, .console-card");
+  techCards.forEach((card) => {
+    card.addEventListener("click", (evt) => {
+      if (globalTriggerImpulse) {
+        globalTriggerImpulse(evt.clientX, evt.clientY, 1.2);
+      }
+    });
+  });
 
 })();
