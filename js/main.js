@@ -1,17 +1,17 @@
 /*
- * John Lloyd F. Villar - Portfolio Client Scripts
- * Clean, lightweight, dependency-free functionality
+ * Computer Tech Client Scripts - John Lloyd F. Villar
+ * Lightweight, accessible, dependency-free functionality.
  */
 
 (() => {
   "use strict";
 
   const root = document.documentElement;
-  const themeToggle = document.querySelector("#theme-toggle");
+  const themeToggle = document.querySelector("#theme-btn") || document.querySelector("#theme-toggle");
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const menuToggle = document.querySelector("#menu-toggle");
-  const navMenu = document.querySelector("#nav-menu");
-  const navLinks = [...document.querySelectorAll(".nav-item")];
+  const menuToggle = document.querySelector("#menu-btn") || document.querySelector("#menu-toggle");
+  const navMenu = document.querySelector("#cockpit-nav") || document.querySelector("#nav-menu");
+  const navLinks = [...document.querySelectorAll(".tech-link"), ...document.querySelectorAll(".nav-item")];
   const yearElement = document.querySelector("#copyright-year");
 
   // Dynamic Year
@@ -24,7 +24,7 @@
     const isLight = theme === "light";
     root.dataset.theme = isLight ? "light" : "dark";
     if (themeMeta) {
-      themeMeta.setAttribute("content", isLight ? "#f6faf7" : "#0a0f0d");
+      themeMeta.setAttribute("content", isLight ? "#f0f7f2" : "#050806");
     }
     if (themeToggle) {
       const nextTheme = isLight ? "dark" : "light";
@@ -33,14 +33,14 @@
     }
     if (save) {
       try {
-        localStorage.setItem("jlv-theme", isLight ? "light" : "dark");
+        localStorage.setItem("jlv-tech-theme", isLight ? "light" : "dark");
       } catch (err) {}
     }
   }
 
   // Load saved theme or match system
   try {
-    const stored = localStorage.getItem("jlv-theme");
+    const stored = localStorage.getItem("jlv-tech-theme");
     if (stored) {
       updateTheme(stored, false);
     } else {
@@ -100,14 +100,14 @@
       }
     });
   }, {
-    rootMargin: "-25% 0px -65% 0px",
+    rootMargin: "-20% 0px -65% 0px",
     threshold: 0
   });
 
   observedSections.forEach((sec) => spy.observe(sec));
 
-  /* Clipboard Copy */
-  const copyBtns = document.querySelectorAll(".btn-copy");
+  /* Clipboard Copy with Tech Terminal Feedback */
+  const copyBtns = document.querySelectorAll(".copy-cmd-btn, .btn-copy");
   const copyNotify = document.querySelector("#copy-feedback");
 
   copyBtns.forEach((btn) => {
@@ -117,14 +117,14 @@
 
       navigator.clipboard.writeText(targetText).then(() => {
         if (copyNotify) {
-          copyNotify.textContent = `Copied "${targetText}" to clipboard.`;
+          copyNotify.textContent = `[SUCCESS: COPIED "${targetText}" TO CLIPBOARD]`;
           setTimeout(() => {
             copyNotify.textContent = "";
           }, 3200);
         }
       }).catch(() => {
         if (copyNotify) {
-          copyNotify.textContent = "Please select and copy manually.";
+          copyNotify.textContent = "[ERROR: CLIPBOARD_ACCESS_DENIED]";
         }
       });
     });
